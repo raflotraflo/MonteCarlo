@@ -33,6 +33,10 @@
             this.textBoxTime = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxCoreCount = new System.Windows.Forms.TextBox();
+            this.textBoxMonteCarloCount = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBoxThreadCount
@@ -50,7 +54,7 @@
             // 
             // ButtonCalculate
             // 
-            this.ButtonCalculate.Location = new System.Drawing.Point(362, 43);
+            this.ButtonCalculate.Location = new System.Drawing.Point(388, 391);
             this.ButtonCalculate.Name = "ButtonCalculate";
             this.ButtonCalculate.Size = new System.Drawing.Size(132, 45);
             this.ButtonCalculate.TabIndex = 1;
@@ -69,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 23);
+            this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 17);
             this.label1.TabIndex = 3;
@@ -78,17 +82,54 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 193);
+            this.label2.Location = new System.Drawing.Point(9, 193);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Czas obliczeń";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(359, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 17);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Ilość rdzeni";
+            // 
+            // textBoxCoreCount
+            // 
+            this.textBoxCoreCount.Location = new System.Drawing.Point(362, 43);
+            this.textBoxCoreCount.Name = "textBoxCoreCount";
+            this.textBoxCoreCount.ReadOnly = true;
+            this.textBoxCoreCount.Size = new System.Drawing.Size(158, 22);
+            this.textBoxCoreCount.TabIndex = 6;
+            // 
+            // textBoxMonteCarloCount
+            // 
+            this.textBoxMonteCarloCount.Location = new System.Drawing.Point(12, 117);
+            this.textBoxMonteCarloCount.Name = "textBoxMonteCarloCount";
+            this.textBoxMonteCarloCount.Size = new System.Drawing.Size(158, 22);
+            this.textBoxMonteCarloCount.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 97);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(259, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Ilość powtórzeń w metodzie Monte Carlo";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 448);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBoxMonteCarloCount);
+            this.Controls.Add(this.textBoxCoreCount);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxTime);
@@ -107,6 +148,10 @@
         private System.Windows.Forms.ComboBox comboBoxThreadCount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxCoreCount;
+        private System.Windows.Forms.TextBox textBoxMonteCarloCount;
+        private System.Windows.Forms.Label label4;
     }
 }
 
