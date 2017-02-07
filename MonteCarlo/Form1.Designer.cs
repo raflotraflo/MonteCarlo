@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBoxThreadCount = new System.Windows.Forms.ComboBox();
             this.ButtonCalculate = new System.Windows.Forms.Button();
             this.textBoxTime = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,20 +36,10 @@
             this.textBoxCoreCount = new System.Windows.Forms.TextBox();
             this.textBoxMonteCarloCount = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxThreadCount = new System.Windows.Forms.ComboBox();
+            this.textBoxPi = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // comboBoxThreadCount
-            // 
-            this.comboBoxThreadCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxThreadCount.Items.AddRange(new object[] {
-            1,
-            2,
-            3,
-            4});
-            this.comboBoxThreadCount.Location = new System.Drawing.Point(12, 43);
-            this.comboBoxThreadCount.Name = "comboBoxThreadCount";
-            this.comboBoxThreadCount.Size = new System.Drawing.Size(158, 24);
-            this.comboBoxThreadCount.TabIndex = 0;
             // 
             // ButtonCalculate
             // 
@@ -64,7 +53,7 @@
             // 
             // textBoxTime
             // 
-            this.textBoxTime.Location = new System.Drawing.Point(12, 213);
+            this.textBoxTime.Location = new System.Drawing.Point(198, 218);
             this.textBoxTime.Name = "textBoxTime";
             this.textBoxTime.ReadOnly = true;
             this.textBoxTime.Size = new System.Drawing.Size(158, 22);
@@ -82,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 193);
+            this.label2.Location = new System.Drawing.Point(195, 198);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 17);
             this.label2.TabIndex = 4;
@@ -121,11 +110,40 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Ilość powtórzeń w metodzie Monte Carlo";
             // 
+            // comboBoxThreadCount
+            // 
+            this.comboBoxThreadCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxThreadCount.FormattingEnabled = true;
+            this.comboBoxThreadCount.Location = new System.Drawing.Point(12, 43);
+            this.comboBoxThreadCount.Name = "comboBoxThreadCount";
+            this.comboBoxThreadCount.Size = new System.Drawing.Size(158, 24);
+            this.comboBoxThreadCount.TabIndex = 0;
+            this.comboBoxThreadCount.SelectedIndexChanged += new System.EventHandler(this.comboBoxThreadCount_SelectedIndexChanged);
+            // 
+            // textBoxPi
+            // 
+            this.textBoxPi.Location = new System.Drawing.Point(12, 218);
+            this.textBoxPi.Name = "textBoxPi";
+            this.textBoxPi.ReadOnly = true;
+            this.textBoxPi.Size = new System.Drawing.Size(158, 22);
+            this.textBoxPi.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 198);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 17);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Wynik PI";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 448);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxPi);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxMonteCarloCount);
             this.Controls.Add(this.textBoxCoreCount);
@@ -152,6 +170,8 @@
         private System.Windows.Forms.TextBox textBoxCoreCount;
         private System.Windows.Forms.TextBox textBoxMonteCarloCount;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxPi;
+        private System.Windows.Forms.Label label5;
     }
 }
 
