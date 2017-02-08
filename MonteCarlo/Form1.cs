@@ -22,7 +22,7 @@ namespace MonteCarlo
         private int _radius = 1000;
         private List<double> _valueOfPiList = new List<double>();
 
-        delegate void SetTimeCallback(string text); //deletgaty do zabepieczenia edycji visu z innego wątku
+        delegate void SetTimeCallback(string text); //delegaty do zabepieczenia edycji visu z innego wątku
         delegate void SetTextCallback(string text);
 
         int _threadsCount = 0;
@@ -40,12 +40,12 @@ namespace MonteCarlo
             comboBoxThreadCount.SelectedIndex = 0;
 
             textBoxCoreCount.Text = processorCount.ToString();
-            textBoxMonteCarloCount.Text = "1000000";
+            textBoxMonteCarloCount.Text = "";
         }
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            if (_isCalculating) // jeśli obecnie trwają jakieś obliczenia kolejne nei są wywoływane
+            if (_isCalculating) // jeśli obecnie trwają jakieś obliczenia kolejne nie są wywoływane
             {
                 return;
             }
@@ -69,11 +69,11 @@ namespace MonteCarlo
                 if (!canParse)
                 {
                     //jeśli jest zła liczba wpisana do textboxa to użytkownik dostaje informację 
-                    this.SetText("Zła wprowadzona liczba");
+                    this.SetText("Zła liczba");
                     return;
                 }
 
-                this.SetText("Obliczam ...");
+                this.SetText("O ");
 
                 List<Thread> threads = new List<Thread>();
                 _valueOfPiList.Clear();
@@ -82,7 +82,7 @@ namespace MonteCarlo
 
                 for (int i = 1; i <= _threadsCount; i++)
                 {
-                    //uruchomienie obliczeń w tylu wątkach ile wybrał użytkwnik
+                    //uruchomienie obliczeń w tylu wątkach ile wybrał użytkownik
                     Thread thread = new Thread(() => MonteCarlo(operationsPerThread));
                     thread.Start();
                     threads.Add(thread);
@@ -115,12 +115,12 @@ namespace MonteCarlo
             int percent = 0;
 
             // dzięki temu znamy progres obliczeń
-            int value = randomCount / 10;
-            List<int> valueList = new List<int>();
-            for (int i = 0; i < 10; i++)
-            {
-                valueList.Add( i * value);
-            }
+           // int value = randomCount / 10;
+            //List<int> valueList = new List<int>();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    valueList.Add( i * value);
+            //}
             //////
 
             Random gen = new Random(); //utowrzenie generatora liczb losowych
@@ -136,12 +136,12 @@ namespace MonteCarlo
 
                 
 
-                if (valueList.Contains(j))
-                {
-                    percent += 10;
-                    this.SetText("Obliczam ... " + percent + " %");
-                    // dzięki temu znamy progres obliczeń
-                }
+               // if (valueList.Contains(j))
+                //{
+                 //   percent += 10;
+                   // this.SetText("Obl... " + percent + " %");
+                    //// dzięki temu znamy progres obliczeń
+               // }
 
                 if (length < (double) _radius)
                 {
