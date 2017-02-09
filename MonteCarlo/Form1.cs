@@ -22,7 +22,7 @@ namespace MonteCarlo
         private int _radius = 1000;
         private List<double> _valueOfPiList = new List<double>();
 
-        delegate void SetTimeCallback(string text); //delegaty do zabepieczenia edycji visu z innego wątku
+        delegate void SetTimeCallback(string text);
         delegate void SetTextCallback(string text);
 
         int _threadsCount = 0;
@@ -45,30 +45,29 @@ namespace MonteCarlo
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            if (_isCalculating) // jeśli obecnie trwają jakieś obliczenia kolejne nie są wywoływane
+            if (_isCalculating)
             {
                 return;
             }
 
             _mainThread = new Thread(Calculate);
-            _mainThread.Start(); // uruchomienei akcji w dodatkowym wątku, aby główny wątek nie został chwilowo zablokowany
+            _mainThread.Start(); 
         }
 
         private void Calculate()
         {
-            lock (lockCalculate) // lock - operacje w środku mogą być wykonywane tylko przez jeden wątek na raz
+            lock (lockCalculate) 
             {
                 _isCalculating = true;
 
                 Stopwatch watch = new Stopwatch();
-                watch.Start(); // rozpoczęcie mierznia czasu
+                watch.Start();
 
-                int monteCarloCount; //ilość powtórzeń (dokładność)
+                int monteCarloCount;
                 bool canParse = int.TryParse(textBoxMonteCarloCount.Text, out monteCarloCount);
 
                 if (!canParse)
                 {
-                    //jeśli jest zła liczba wpisana do textboxa to użytkownik dostaje informację 
                     this.SetText("Zła liczba");
                     return;
                 }
@@ -78,29 +77,27 @@ namespace MonteCarlo
                 List<Thread> threads = new List<Thread>();
                 _valueOfPiList.Clear();
 
-                int operationsPerThread = monteCarloCount / _threadsCount; // łączna iloś operacji jest równo dzielona na poszczególne 
+                int operationsPerThread = monteCarloCount / _threadsCount;
 
                 for (int i = 1; i <= _threadsCount; i++)
                 {
-                    //uruchomienie obliczeń w tylu wątkach ile wybrał użytkownik
                     Thread thread = new Thread(() => MonteCarlo(operationsPerThread));
                     thread.Start();
                     threads.Add(thread);
                 }
 
-                WaitAll(threads); //czekamy na zakonczenie wszyskych wątków
+                WaitAll(threads);
 
                 double sum = 0;
 
                 _valueOfPiList.ForEach(x =>
                 {
-                    sum += x; // sumowanie wyników
+                    sum += x;
                 });
 
-                //podzielennie sumy przez ilośc wątków, średnia liczba PI z poszczególnych obliczeń
                 double PI = sum / _threadsCount;
 
-                watch.Stop(); // zakończenie mierzenia czasu
+                watch.Stop();
                 this.SetText("PI = " + PI);
                 this.SetTime(watch.Elapsed.TotalMilliseconds + " ms");
 
@@ -114,34 +111,15 @@ namespace MonteCarlo
             int pointsInCircle = 0;
             int percent = 0;
 
-            // dzięki temu znamy progres obliczeń
-           // int value = randomCount / 10;
-            //List<int> valueList = new List<int>();
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    valueList.Add( i * value);
-            //}
-            //////
-
-            Random gen = new Random(); //utowrzenie generatora liczb losowych
+            Random gen = new Random();
 
             for (int j = 0; j < randomCount; j++)
             {
-                int x = gen.Next(0, _radius); // losowanie położenia na osi x
-                int y = gen.Next(0, _radius); // na osi y 
-                //liczby są losowane tylko w jednej ćwiartce kwadratu, dlatego są losowane od 0 do R, a kwadrat ma bok 2R
-                //promień koło _radius = R 
+                int x = gen.Next(0, _radius); 
+                int y = gen.Next(0, _radius); 
 
-                var length = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
 
-                
-
-               // if (valueList.Contains(j))
-                //{
-                 //   percent += 10;
-                   // this.SetText("Obl... " + percent + " %");
-                    //// dzięki temu znamy progres obliczeń
-               // }
+                var length = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));        
 
                 if (length < (double) _radius)
                 {
@@ -195,8 +173,6 @@ namespace MonteCarlo
             ComboBox cmb = (ComboBox)sender;
             var item = (ComboboxItem) cmb.SelectedItem;
             _threadsCount = item.Value;
-            //przypisanie ilości wątków
-
         }
     }
 }
